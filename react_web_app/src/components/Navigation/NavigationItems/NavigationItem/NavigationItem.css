@@ -1,0 +1,7 @@
+.navigation-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.navigation-item:hover {
+    background-image: linear-gradient(to bottom left, #10334b, #021111);
+}

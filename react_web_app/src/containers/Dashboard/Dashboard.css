@@ -1,0 +1,16 @@
+.dashboard {
+    font-family: 'Baloo Chettan 2', sans-serif;
+}
+
+.current-data {
+    display: inline-block;
+    width: 300px;
+    margin: 40px 40px 40px 60px;
+    padding: 20px;
+    border: 1px solid #8b8989;
+    border-radius: 6px;
+}
+
+p {
+    text-align: center;
+}
