@@ -6,6 +6,7 @@ import './Dashboard.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SensorOutput from '../../components/SensorOutput/SensorOutput';
 import Button from '../../components/UI/Button/Button';
+require('dotenv').config();
 
 const Dashboard = (props) => {
 	const [meteoData, setMeteoData] = useState([]);
@@ -14,7 +15,8 @@ const Dashboard = (props) => {
 	const [sonoffState, setSonoffState] = useState();
 
 	useEffect(() => {
-		axios.get('https://project_id.firebasio.com/path.json')
+		console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID);
+		axios.get(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/meteoData.json')
 			.then((response) => {
 				let updatedState = Object.keys(response.data).map(key => {
 					return {
@@ -42,7 +44,7 @@ const Dashboard = (props) => {
 	}, []);
 
 	useEffect(() => {
-		axios.get('https://project_id.firebasio.com/path.json')
+		axios.get(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json')
 			.then((response) => {
 				console.log(response.data)
 				setSonoffState(response.data.sonoffSwitch);
@@ -55,7 +57,7 @@ const Dashboard = (props) => {
 	let sonoffSwitch = () => {
 		let newSonoffState = {sonoffSwitch: !sonoffState};
 		setSonoffState(newSonoffState);
-		axios.put('https://project_id.firebasio.com/path.json', newSonoffState);
+		axios.put(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json', newSonoffState);
 	}
 
 	return (

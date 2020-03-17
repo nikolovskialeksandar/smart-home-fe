@@ -12,6 +12,7 @@
 /build
 
 # misc
+.env
 firebase.json
 .firebase
 .firebaserc

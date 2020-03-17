@@ -4,11 +4,12 @@
 #include <FirebaseESP8266.h>
 #include <NTP.h>
 #include <DHT.h>
+#include <config.h>
 
-#define WIFI_SSID "<SSID>"
-#define WIFI_PASSWORD "<password>"
-#define FIREBASE_HOST "<firebase_project_id>"
-#define FIREBASE_AUTH "<firebase_database_secret_or_token>"
+const char WIFI_SSID[] =  SSID;
+const char WIFI_PASSWORD[]  = PASSWORD;
+const char FIREBASE_HOST[]  = FIREBASE_PROJECT_ID;
+const char FIREBASE_AUTH[]  = FIREBASE_DATABASE_SECRET;
 
 FirebaseData firebaseData;
 
