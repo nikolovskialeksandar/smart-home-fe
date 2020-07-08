@@ -11,12 +11,26 @@ const char WIFI_PASSWORD[]  = PASSWORD;
 const char FIREBASE_HOST[]  = FIREBASE_PROJECT_ID;
 const char FIREBASE_AUTH[]  = FIREBASE_DATABASE_SECRET;
 
+#define DELAY 500 // Delay between two measurements in ms
+#define VIN 3.3 // V power voltage
+#define R 10000 //ohm resistance value
+
+const int photoResistorPin = A0; 
+
 FirebaseData firebaseData;
 
 WiFiUDP wifiUdp;
 NTP ntp(wifiUdp);
 
 DHT dht(5, DHT11);
+
+int sensorRawToPhys(int raw){
+  // Conversion rule
+  float Vout = float(raw) * (VIN / float(1023));// Conversion analog to voltage
+  float RLDR = (R * (VIN - Vout))/Vout; // Conversion voltage to resistance
+  int phys=500/(RLDR/1000); // Conversion resistance to lumen
+  return phys;
+}
 
 void setup() {
   Serial.begin(115200);
@@ -51,8 +65,14 @@ void loop() {
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
 
+  int sensorVal = analogRead(photoResistorPin);
+  int lux=sensorRawToPhys(sensorVal);
+  if(lux > 7000 || lux < 0) {
+    lux = 7000;
+  }
+
   FirebaseJson jsonDataLoad;
-  jsonDataLoad.add("temperature", temperature).add("humidity", humidity).add("time", time);
+  jsonDataLoad.add("temperature", temperature).add("humidity", humidity).add("time", time).add("light", lux);
   if (Firebase.pushJSON(firebaseData, "/meteoData", jsonDataLoad)) {
 
     Serial.println(firebaseData.dataPath());

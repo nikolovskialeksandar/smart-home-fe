@@ -1,0 +1,42 @@
+.sensor-output{
+    width: 40%;
+    height: 370px;
+    padding: 8px;
+    text-align: center;
+}
+
+.custom-tooltip {
+    padding: 5px;
+    background-color: #B0BEC5;
+    color: #263238;
+}
+
+.avg {
+    color:#2E7D32;
+}
+
+.max {
+    color: #F44336;
+}
+
+.min {
+    color: #1E88E5;
+}
+
+@media(max-width: 1050px) {
+    .sensor-output {
+        width: 70%;
+        height: 290px;
+        margin-right: 250px;
+    }
+}
+
+@media(max-width: 600px) {
+    .sensor-output {
+        width: 100%;
+        height: 230px;
+        margin-left: -30px;
+    }
+}
+
+

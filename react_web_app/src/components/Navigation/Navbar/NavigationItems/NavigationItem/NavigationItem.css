@@ -1,0 +1,27 @@
+.navigation-item {
+    padding: 10px;
+    cursor: pointer;  
+}
+
+.navigation-item  a{
+    color: white;
+    text-decoration: none;
+}
+
+.navigation-item:hover {
+    background-image: linear-gradient(to bottom left, #10334b, #021111);
+}
+.navigation-item2 {
+    padding: 10px 15px;
+    border-bottom: 2px solid transparent    ;
+    cursor: pointer;
+}
+
+.navigation-item2  a{
+    color: white;
+    text-decoration: none;
+}
+
+.navigation-item2:hover {
+    border-bottom: 2px solid white;
+}
