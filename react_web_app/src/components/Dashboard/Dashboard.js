@@ -6,11 +6,7 @@ import Button from '../UI/Button/Button';
 import Spinner from '../UI/Spinner/Spinner';
 import Navbar from '../Navigation/Navbar/Navbar';
 
-const dashboard = props => {
-	const sonoffSwitch = () => {
-		props.sendSonoffData(props.sonoffState);
-	};
-
+const dashboard = (props) => {
 	let current = <Spinner />;
 	if(props.lastValue) {
 		current = (
@@ -27,7 +23,11 @@ const dashboard = props => {
         <div className="dashboard">
 			<Navbar navbar2 />
 			{current}
-			<Button sonoffSwitch={sonoffSwitch} sonoffState={props.sonoffState} />
+			<Button 
+				buttonType="switch" 
+				sonoffSwitch={props.sonoffSwitch} 
+				sonoffState={props.sonoffState} 
+			/>
 			<SensorChart
 				data={props.todayData} 
 				dataKey="temperature" 

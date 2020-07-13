@@ -4,7 +4,7 @@ const initialState = {
     meteoData: null,
     todayData: null,
     monthData: null,
-    selectedMonth: null,
+    selectedMonth: 0,
     lastValue: null,
     error: false
 };

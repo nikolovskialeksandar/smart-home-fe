@@ -5,7 +5,7 @@ import { ResponsiveContainer, LineChart, Line, AreaChart, Area, XAxis, YAxis, Ca
 import './SensorChart.css';
 import Spinner from '../UI/Spinner/Spinner';
 
-const sensorChart = props => {
+const sensorChart = (props) => {
     const sensorName = props.dataKey.charAt(0).toUpperCase() + props.dataKey.substring(1);
     let sensorClass = null;
     switch (props.dataKey) {
@@ -28,33 +28,35 @@ const sensorChart = props => {
             if(payload === [] || payload === null) {
                 return null;
             }
+
             switch (props.dataKey) {
                 case 'temperature':
                     return (
                         <div className="custom-tooltip">
-                        <p >Avg. Temp: <span className="avg">{`${payload[0].payload.temperature }`}</span></p>
-                        <p >Max. Temp: <span className="max">{`${payload[0].payload.maxTemp}`}</span></p>
-                        <p >Min. Temp: <span className="min">{`${payload[0].payload.minTemp}`}</span></p>
+                            <p >Avg. Temp: <span className="avg">{`${payload[0].payload.temperature }`}</span></p>
+                            <p >Max. Temp: <span className="max">{`${payload[0].payload.maxTemp}`}</span></p>
+                            <p >Min. Temp: <span className="min">{`${payload[0].payload.minTemp}`}</span></p>
                         </div>
                     );
                 case 'humidity':
                     return (
                         <div className="custom-tooltip">
-                        <p>Avg. Humidity: <span className="avg">{`${payload[0].payload.humidity}`}</span> </p>
-                        <p>Max. Humidity: <span className="max">{`${payload[0].payload.maxHumid}`}</span> </p>
-                        <p>Min. Humidity: <span className="min">{`${payload[0].payload.minHumid}`}</span> </p>
+                            <p>Avg. Humidity: <span className="avg">{`${payload[0].payload.humidity}`}</span> </p>
+                            <p>Max. Humidity: <span className="max">{`${payload[0].payload.maxHumid}`}</span> </p>
+                            <p>Min. Humidity: <span className="min">{`${payload[0].payload.minHumid}`}</span> </p>
                         </div>
                     );
                 case 'light':
                     return (
                         <div className="custom-tooltip">
-                        <p>Avg. Light: <span className="avg">{`${payload[0].payload.light}`}</span> </p>
+                            <p>Avg. Light: <span className="avg">{`${payload[0].payload.light}`}</span> </p>
                         </div>
                     );
                 default:
                     return null;
             }
-		}
+        }
+        
 		return null;
     };
 
@@ -73,6 +75,7 @@ const sensorChart = props => {
             </ResponsiveContainer>
         );
     }
+
     else if(chartType === 'line') {
         chart = (
             <ResponsiveContainer>
@@ -93,6 +96,7 @@ const sensorChart = props => {
             {chart}
         </div> 
     );
-}
+};
+
 export default sensorChart;
 

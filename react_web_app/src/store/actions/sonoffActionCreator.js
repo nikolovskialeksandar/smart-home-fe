@@ -14,36 +14,36 @@ export const fetchSonoffDataFailed = (error) => {
     return {
         type: actionTypes.FETCH_SONOFF_DATA_FAILED,
         error: error
-    }
+    };
 };
 
 export const sendSonoffDataFailed = (error) => {
     return {
         type: actionTypes.SEND_SONOFF_DATA_FAILED,
         error: error
-    }
+    };
 };
 
-export const sendSonoffData = (sonoffState) => {
+export const sendSonoffData = (sonoffState, token) => {
     return dispatch => {
-        axios.put(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json', {sonoffSwitch: !sonoffState})
-        .then(() => {
-            dispatch(initSonoffData());
-        })
-        .catch((error) => {
-            dispatch(sendSonoffDataFailed(error));
-        })
-    }
+        axios.put(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json?auth=' + token, {sonoffSwitch: !sonoffState})
+            .then(() => {
+                dispatch(initSonoffData(token));
+            })
+            .catch((error) => {
+                dispatch(sendSonoffDataFailed(error));
+            });
+    };
 };
 
-export const initSonoffData = () => {
+export const initSonoffData = (token) => {
     return dispatch => {
-        axios.get(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json')
-        .then((response) => {
-            dispatch(setSonoffData(response.data.sonoffSwitch));
-        })
-        .catch(error => {
-            dispatch(fetchSonoffDataFailed(error));
-        })
-    }
+        axios.get(process.env.REACT_APP_FIREBASE_PROJECT_ID + '/sonoff.json?auth=' + token)
+            .then((response) => {
+                dispatch(setSonoffData(response.data.sonoffSwitch));
+            })
+            .catch((error) => {
+                dispatch(fetchSonoffDataFailed(error));
+            });
+    };
 };

@@ -3,3 +3,9 @@
     flex-direction: row;
     justify-content: flex-end;
 }
+
+.navigation-items2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}

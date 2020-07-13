@@ -2,17 +2,35 @@ import React from 'react';
 
 import './Button.css';
 
-const button = props => (
-    <div className="button">
-        <p>Light <i class="far fa-lightbulb"></i></p>
-        <button
-            type="button"
-            onClick={props.sonoffSwitch}
-            style={props.sonoffState ? { 'backgroundColor': '#388E3C' } : { 'backgroundColor': '#DD2C00' }}
+const button = (props) => {
+    let button = null;
+    if (props.buttonType === 'switch') {
+        button = (
+            <div className="button-switch">
+                <p>Light <i className="far fa-lightbulb"></i></p>
+                <button
+                    type="button"
+                    onClick={props.sonoffSwitch}
+                    style={props.sonoffState ? { 'backgroundColor': '#388E3C' } : { 'backgroundColor': '#DD2C00' }}
+                >
+                    {props.sonoffState ? "ON" : "OFF"}
+                </button>
+            </div>
+        );
+    }
+
+    else if (props.buttonType === 'regular') {
+        button = 
+        <button 
+            className={props.styleClasses} 
+            onClick={props.onClick}
         >
-            {props.sonoffState ? "ON" : "OFF"}
+            {props.name}
         </button>
-    </div>
-);
+    } 
+
+    return button;
+};
+
 
 export default button;

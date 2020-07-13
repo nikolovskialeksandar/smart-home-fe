@@ -1,12 +1,13 @@
 .sensor-output{
     width: 40%;
     height: 370px;
+    margin-top: 30px;
     padding: 8px;
     text-align: center;
 }
 
 .custom-tooltip {
-    padding: 5px;
+    padding: 10px;
     background-color: #B0BEC5;
     color: #263238;
 }
