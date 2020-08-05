@@ -1,0 +1,25 @@
+.current-data {
+    display: inline-block;
+    width: 300px;
+    margin: 40px 40px 40px 70px;
+    padding: 20px;
+    border: 1px solid #8b8989;
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    .current-data {
+        width: 60%;
+        margin-left: 40px;
+    }
+}
+
+.switch {
+    display: inline-block;
+    width: 70px;
+    margin-left: 50px;
+}
+
+.switch p {
+    margin: 5px;
+}

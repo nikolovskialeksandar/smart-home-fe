@@ -1,0 +1,43 @@
+button {
+    width: 100px;
+    padding: 8px;
+    border: none;
+    border-radius: 2px;
+    color: #d9d9d9;
+    cursor: pointer;
+}
+
+button:focus {
+    outline:0;
+}
+
+.success {
+    background-color: #388E3C;
+}
+
+.danger {
+    background-color: #DD2C00;
+}
+
+.success:hover {
+    background-color: #3f9743;
+}
+
+.danger:hover {
+    background-color: #e6390e;
+}
+
+.transparent {
+    padding: 5px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.transparent:hover {
+    border-bottom: 1px solid #37474F;
+}
+
+.disabled {
+    background-color: #555555;
+    cursor: not-allowed;
+}
