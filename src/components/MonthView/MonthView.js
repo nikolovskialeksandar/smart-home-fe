@@ -32,7 +32,7 @@ const monthView = (props) => {
 		props.selectedMonth ? <p className="no-data">No data</p> : null;
 
     return (
-        <div className="month-view">
+        <main className="month-view">
 			<Navbar navbar2 />
             <form>
 				<select  defaultValue={'default' }onChange={props.calculateMonthData}>
@@ -41,7 +41,7 @@ const monthView = (props) => {
 				</select>
 				{monthView}
 			</form>
-        </div>
+        </main>
     );
 };
 
