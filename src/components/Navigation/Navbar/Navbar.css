@@ -1,5 +1,5 @@
 .navbar {
-    height: 20%;
+    display: flex;
     background-image: linear-gradient(to bottom left, #266188, #051f20);
     font-size: 19px;
 }

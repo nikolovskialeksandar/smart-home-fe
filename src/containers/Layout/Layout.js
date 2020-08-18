@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
@@ -10,14 +10,19 @@ import Logout from '../../containers/Auth/Logout/Logout';
 import * as actionCreators from '../../store/actions/index';
 
 const Layout = (props) => {
+	const [sideDrawerVisible, setSideDrawerVisible] = useState(false);
 	useEffect(() => {
 		props.initMeteoData(props.token);
 		props.initSonoffData(props.token);
 	}, []);
+	const sideDrawerShow = () => {
+		const updatedState = sideDrawerVisible;
+		setSideDrawerVisible(!updatedState);
+	}
 
 	return (
-		<main className="layout">
-			<Navbar />
+		<div className="layout">
+			<Navbar clicked={sideDrawerShow} />
 			<Switch>
 				<Route path="/logout" component={Logout} />
 				<Route path="/month" render={() => (
@@ -36,7 +41,7 @@ const Layout = (props) => {
 					/>
 				)} />
 			</Switch>
-		</main>
+		</div>
 	);
 };
 

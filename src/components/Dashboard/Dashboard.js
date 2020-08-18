@@ -20,7 +20,7 @@ const dashboard = (props) => {
 	}
 
     return (
-        <div className="dashboard">
+        <main className="dashboard">
 			<Navbar navbar2 />
 			{current}
 			<div className="switch">
@@ -49,7 +49,7 @@ const dashboard = (props) => {
 				color="#FFD54F"
 				charType='area' 	
 			/>
-        </div>
+        </main>
     );
 };
 

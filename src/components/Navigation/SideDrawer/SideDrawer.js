@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './Sidebar.css';
+import './SideDrawer.css';
 import Navigation
-const sidebar = (props) => {
+const sideDrawer = (props) => {
     return (
         <nav>
 
@@ -10,4 +10,4 @@ const sidebar = (props) => {
     );
 }
 
-export default sidebar;
+export default sideDrawer;

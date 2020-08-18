@@ -2,15 +2,13 @@ import React from 'react';
 
 import './Navbar.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import DrawereToogle from '../SideDrawer/DrawerToogle/DrawerToogle';
+import DrawerToggle from '../SideDrawer/DrawerToogle/DrawerToggle';
 
 const navbar = (props) => (
-        <div className={props.navbar2 ? "navbar2" : "navbar"}>
-            <header>
-                <DrawereToogle />
-                <NavigationItems navbar2={props.navbar2 ? true : false} />
-            </header>
-        </div>
+	<nav className={props.navbar2 ? "navbar2" : "navbar"}>
+		{props.navbar2 ? null : <DrawerToggle clicked={props.clicked} />}
+		<NavigationItems navbar2={props.navbar2 ? true : false} />
+	</nav>
 );
 
 export default navbar;
