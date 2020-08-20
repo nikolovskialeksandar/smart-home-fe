@@ -10,3 +10,16 @@
     flex-direction: row;
     justify-content: flex-start;
 }
+
+@media(max-width: 500px) {
+    .navigation-items {
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-grow: 0;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+}

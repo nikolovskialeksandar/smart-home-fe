@@ -7,6 +7,7 @@ import Navbar from '../../components/Navigation/Navbar/Navbar';
 import MonthView from '../../components/MonthView/MonthView';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Logout from '../../containers/Auth/Logout/Logout';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import * as actionCreators from '../../store/actions/index';
 
 const Layout = (props) => {
@@ -15,14 +16,24 @@ const Layout = (props) => {
 		props.initMeteoData(props.token);
 		props.initSonoffData(props.token);
 	}, []);
+
 	const sideDrawerShow = () => {
 		const updatedState = sideDrawerVisible;
 		setSideDrawerVisible(!updatedState);
 	}
 
+	const closeSideDrawer = () => {
+		setSideDrawerVisible(false);
+	}
+
 	return (
 		<div className="layout">
-			<Navbar clicked={sideDrawerShow} />
+			<Navbar 
+				clicked={sideDrawerShow} 
+				show={!sideDrawerVisible} 
+				desktopOnly={true} 
+			/>
+			<SideDrawer show={sideDrawerVisible} closeSideDrawer={closeSideDrawer} />
 			<Switch>
 				<Route path="/logout" component={Logout} />
 				<Route path="/month" render={() => (

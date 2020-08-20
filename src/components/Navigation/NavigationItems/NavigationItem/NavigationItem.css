@@ -11,6 +11,7 @@
 .navigation-item:hover {
     background-image: linear-gradient(to bottom left, #10334b, #021111);
 }
+
 .navigation-item2 {
     padding: 10px 15px;
     border-bottom: 2px solid transparent    ;
@@ -24,4 +25,15 @@
 
 .navigation-item2:hover {
     border-bottom: 2px solid white;
+}
+
+@media(max-width: 500px) {
+    .navigation-item {
+        margin-top: 3%;
+    }
+
+    .navigation-item:hover {
+        background-image: none;
+        background-color: #0a1f2e;
+    }
 }
