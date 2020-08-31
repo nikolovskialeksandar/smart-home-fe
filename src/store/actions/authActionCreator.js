@@ -27,6 +27,7 @@ export const authFailed = (error) => {
 export const authLogOut = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -36,6 +37,7 @@ export const authCheckState = () => {
     return dispatch => {
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
+        const refreshToken = localStorage.getItem('refreshToken');
         if (token) {
             dispatch(authSuccess(userId, token));
         }
@@ -60,9 +62,10 @@ export const auth = (email, password, isSignup) => {
        }
 
         axios.post(url, authData)
-            .then(response => {
+            .then((response) => {
                 localStorage.setItem('userId', response.data.localId);
                 localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('refreshToken', response.data.refreshToken);
                 dispatch(authSuccess(response.data.localId, response.data.idToken));
             })
             .catch((error) => {
@@ -71,3 +74,29 @@ export const auth = (email, password, isSignup) => {
             });
     };
 };
+
+axios.interceptors.response.use((response) => {
+	return response;
+}, (error) => {
+		if(error.response.status === 401) {
+			const refreshToken = localStorage.getItem('refreshToken');
+			const url = 'https://securetoken.googleapis.com/v1/token?key=' + process.env.REACT_APP_API_KEY;
+			const data =  {grant_type: 'refresh_token', refresh_token: refreshToken};
+				axios.post(url, data)
+					.then((response) => {
+						localStorage.setItem('userId', response.data.user_id);
+						localStorage.setItem('token', response.data.id_token);
+						localStorage.setItem('refreshToken', response.data.refresh_token);
+						window.location.reload(false);
+					})
+					.catch((error) => {
+						localStorage.removeItem('userId');
+						localStorage.removeItem('token');
+						localStorage.removeItem('refreshToken');
+						window.location.reload(false);
+					})		
+			}
+		else {
+			return Promise.reject(error);
+		}
+});
