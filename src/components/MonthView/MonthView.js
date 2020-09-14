@@ -7,27 +7,29 @@ import Navbar from '../Navigation/Navbar/Navbar';
 const monthView = (props) => {
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	let monthView = props.monthData !== [] && props.monthData !== null ? (
-		<div>
-			<h2>{monthNames[props.selectedMonth] + ' values'}</h2>			
-			<SensorChart
-				data={props.monthData} 
-				dataKey="temperature" 
-				color="#F44336"
-				charType='line' 
-			/>
-			<SensorChart
-				data={props.monthData} 
-				dataKey="humidity" 
-				color="#4FC3F7"
-				charType='line' 	
-			/> 
-			<SensorChart 
-				data={props.monthData} 
-				dataKey="light" 
-				color="#FFD54F"
-				charType='line' 
-			/> 
-		</div>
+		<React.Fragment>
+			<h2>{monthNames[props.selectedMonth] + ' values'}</h2>
+			<div className="sensor-container">			
+				<SensorChart
+					data={props.monthData} 
+					dataKey="temperature" 
+					color="#F44336"
+					charType='line' 
+				/>
+				<SensorChart
+					data={props.monthData} 
+					dataKey="humidity" 
+					color="#4FC3F7"
+					charType='line' 	
+				/> 
+				<SensorChart 
+					data={props.monthData} 
+					dataKey="light" 
+					color="#FFD54F"
+					charType='line' 
+				/> 
+			</div>
+		</React.Fragment>
 	) : 
 		props.selectedMonth ? <p className="no-data">No data</p> : null;
 

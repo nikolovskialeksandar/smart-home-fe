@@ -31,24 +31,26 @@ const dashboard = (props) => {
 					name={props.sonoffState ? 'ON' : 'OFF'} 
 				/>
 			</div>
-			<SensorChart
-				data={props.todayData} 
-				dataKey="temperature" 
-				color="#F44336"
-				charType='area' 
-			/>
-			<SensorChart 
-				data={props.todayData} 
-				dataKey="humidity" 
-				color="#4FC3F7"
-				charType='area' 	
-			/>
-			<SensorChart 
-				data={props.todayData} 
-				dataKey="light" 
-				color="#FFD54F"
-				charType='area' 	
-			/>
+			<div className="sensor-container">
+				<SensorChart
+					data={props.todayData} 
+					dataKey="temperature" 
+					color="#F44336"
+					charType='area' 
+				/>
+				<SensorChart 
+					data={props.todayData} 
+					dataKey="humidity" 
+					color="#4FC3F7"
+					charType='area' 	
+				/>
+				<SensorChart 
+					data={props.todayData} 
+					dataKey="light" 
+					color="#FFD54F"
+					charType='area' 	
+				/>
+			</div>
         </main>
     );
 };
