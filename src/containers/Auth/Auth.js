@@ -19,11 +19,14 @@ const Auth = (props) => {
                 placeholder: 'Your email'
             },
             value: '',
-            validation: {
+            validationRules: {
                 required: true,
                 isEmail: true
             },
-            valid: false,
+            validation: {
+				valid: false,
+				errorMessage: ''
+			},
             touched: false	
         },
         password: {
@@ -33,11 +36,14 @@ const Auth = (props) => {
                 placeholder: 'Your password'
             },
             value: '',
-            validation: {
+            validationRules: {
                 required: true,
                 minLength: 6
             },
-            valid: false,
+            validation: {
+				valid: false,
+				errorMessage: ''
+			},
             touched: false
         }
     });
@@ -52,44 +58,62 @@ const Auth = (props) => {
                     ...controls.email,
                     value: params.get('email'),
                     touched: true,
-                    valid: true 
+                    validation: {valid: true, errorMessage: ''} 
                 },
                 password: {
                     ...controls.password,
                     value: params.get('pass'),
                     touched: true,
-                    valid: true 
+                    validation: {valid: true, errorMessage: ''} 
                 }
             });
         }
     }, []);
 
-    const checkValidity = (value, rules) => {
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
+    const checkValidity = (elementName) => {
+		let isValid = true;
+		let errorMessage = '';
+		let value = controls[elementName].value;
 
-        if (rules.isEmail) {
+        if (controls[elementName].validationRules.isEmail) {
             const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            isValid = pattern.test(value) && isValid;
+			isValid = pattern.test(value) && isValid;
+			if (!pattern.test(value)) {
+				errorMessage = 'Invalid email';
+			}
         }
 
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
+        if (controls[elementName].validationRules.minLength) {
+			isValid = value.length >= controls[elementName].validationRules.minLength && isValid;
+			if (value.length <= controls[elementName].validationRules.minLength) {
+				errorMessage = 'Password too short';
+			}
+		}
+		
+		if (controls[elementName].validationRules.required) {
+			isValid = value.trim() !== '' && isValid;
+			if (value.trim() === '') {
+				errorMessage = 'Required field';
+			}
         }
+		const updatedControls = {
+            ...controls,
+            [elementName]: {
+                ...controls[elementName],
+				validation: {valid: isValid, errorMessage: errorMessage},
+				touched: true
+            }
+        };
 
-        return isValid;
+        setControls(updatedControls);
     };
 
     const inputChangeHandler = (event, elementName) => {
-        let updatedControls = {
+        const updatedControls = {
             ...controls,
-            [elementName] : {
+            [elementName]: {
                 ...controls[elementName],
-                value: event,
-                valid: checkValidity(event, controls[elementName].validation),
-                touched: true 
+                value: event
             }
         };
 
@@ -112,17 +136,17 @@ const Auth = (props) => {
         authRedirect = <Redirect to='/' />;
     }
 
-    const errorMessages = {
+    const submitErrorMessages = {
         EMAIL_NOT_FOUND: 'Incorrect email address', 
         INVALID_PASSWORD: 'Incorrect password', 
         EMAIL_EXISTS: 'An account with this email already exists'
     };
 
-    let errorMessage = null;
+    let submitErrorMessage = null;
     if (props.error) {
-        errorMessage = (
-            <div className="error-message">
-                <p>{errorMessages[props.error.message]}</p>
+        submitErrorMessage = (
+            <div className="submit-error-message">
+                <p>{submitErrorMessages[props.error.message]}</p>
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
             </div>
         );
@@ -134,24 +158,26 @@ const Auth = (props) => {
             <Input 
                 onChange={(event) => inputChangeHandler(event.target.value, 'email')}
                 elementConfig={controls.email.elementConfig}
-                value= {controls.email.value}
-                touched= {controls.email.touched}
-                valid= {controls.email.valid}
-                label="Email"
+                value={controls.email.value}
+                touched={controls.email.touched}
+                validation={controls.email.validation}
+				label="Email"
+				onBlur={() => checkValidity('email')}
             />
             <Input 
                 onChange={(event) => inputChangeHandler(event.target.value, 'password')} 
                 elementConfig={controls.password.elementConfig}
                 value= {controls.password.value}
-                touched= {controls.password.touched}
-                valid= {controls.password.valid}
-                label="Password"
+                touched={controls.password.touched}
+                validation={controls.password.validation}
+				label="Password"
+				onBlur={() => checkValidity('password')}
             />
-            {errorMessage}
+            {submitErrorMessage}
             <Button 
-                styleClasses= {['success']} 
+                styleClasses={['success']} 
                 onClick={(event) => onSubmit(controls.email.value, controls.password.value, isSignup, event)}
-                disabled={!controls.email.valid || !controls.password.valid} 
+                disabled={!controls.email.validation.valid || !controls.password.validation.valid} 
                 name="Submit" 
             />
             <div className="auth-mode-button">
