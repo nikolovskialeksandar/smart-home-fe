@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './Auth.css';
 import Input from '../../components/UI/Input/Input';
@@ -156,22 +156,22 @@ const Auth = (props) => {
         <form className="auth">
             <h2>{isSignup? 'Sign up' : 'Log in'}</h2>
             <Input 
-                onChange={(event) => inputChangeHandler(event.target.value, 'email')}
+				onChange={(event) => inputChangeHandler(event.target.value, 'email')}
+				onBlur={() => checkValidity('email')}
                 elementConfig={controls.email.elementConfig}
                 value={controls.email.value}
                 touched={controls.email.touched}
                 validation={controls.email.validation}
 				label="Email"
-				onBlur={() => checkValidity('email')}
             />
             <Input 
-                onChange={(event) => inputChangeHandler(event.target.value, 'password')} 
+				onChange={(event) => inputChangeHandler(event.target.value, 'password')} 
+				onBlur={() => checkValidity('password')}
                 elementConfig={controls.password.elementConfig}
                 value= {controls.password.value}
                 touched={controls.password.touched}
                 validation={controls.password.validation}
 				label="Password"
-				onBlur={() => checkValidity('password')}
             />
             {submitErrorMessage}
             <Button 
@@ -214,6 +214,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onAuth: (email, password, isSignup) => dispatch(actionCreators.auth(email, password, isSignup))
     };
+};
+
+Auth.propTypes = {
+	isAuthenticated: PropTypes.bool.isRequired,
+	error: PropTypes.object,
+	loading: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

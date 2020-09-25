@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Navbar.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -14,5 +15,12 @@ const navbar = (props) => (
 			<NavigationItems desktopOnly={props.desktopOnly} />
 		</nav>
 );
+
+navbar.propTypes = {
+	clicked: PropTypes.func,
+	navbar2: PropTypes.bool,
+	show: PropTypes.bool,
+	desktopOnly: PropTypes.bool
+};
 
 export default navbar;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Dashboard.css';
 import SensorChart from '../SensorChart/SensorChart';
@@ -53,6 +54,13 @@ const dashboard = (props) => {
 			</div>
         </main>
     );
+};
+
+dashboard.propTypes = {
+	todayData: PropTypes.array,
+	lastValue: PropTypes.object,
+	sonoffState: PropTypes.bool,
+	sonoffSwitch: PropTypes.func
 };
 
 export default dashboard; 

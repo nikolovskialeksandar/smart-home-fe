@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { ResponsiveContainer, LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 import './SensorChart.css';
@@ -99,6 +99,13 @@ const sensorChart = (props) => {
             {chart}
         </div> 
     );
+};
+
+sensorChart.propTypes = {
+	data: PropTypes.array,
+	dataKey: PropTypes.string.isRequired,
+	color: PropTypes.string,
+	charType: PropTypes.string.isRequired	
 };
 
 export default sensorChart;

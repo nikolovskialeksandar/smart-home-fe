@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './SideDrawer.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -17,7 +18,7 @@ const sideDrawer = (props) => {
             <nav className={styleClasses.join(' ')}>
                 <NavigationItems closeSideDrawer={props.closeSideDrawer}/>
                 <Button 
-                    styleClasses="small" 
+                    styleClasses={['small']}
                     name="X" 
                     onClick={props.closeSideDrawer}
                 />
@@ -25,5 +26,10 @@ const sideDrawer = (props) => {
         </React.Fragment>
     );
 }
+
+sideDrawer.propTypes = {
+	show: PropTypes.bool.isRequired,
+	closeSideDrawer: PropTypes.func.isRequired
+};
 
 export default sideDrawer;

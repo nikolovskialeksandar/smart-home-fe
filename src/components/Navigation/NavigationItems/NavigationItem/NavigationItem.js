@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
 
@@ -9,5 +10,11 @@ const navigationItem = (props) => (
             <NavLink to={props.link}>{props.children}</NavLink>
         </div>
 );
+
+navigationItem.propTypes = {
+	closeSideDrawer: PropTypes.func,
+	navbar2: PropTypes.bool,
+	link: PropTypes.string
+};
 
 export default navigationItem;

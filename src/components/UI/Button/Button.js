@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Button.css';
 
@@ -19,5 +20,11 @@ const button = (props) => {
     );
 };
 
+button.propTypes = {
+	styleClasses: PropTypes.array,
+	onClick: PropTypes.func.isRequired,
+	disabled: PropTypes.bool,
+	name: PropTypes.string
+};
 
 export default button;

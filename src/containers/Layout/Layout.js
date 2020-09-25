@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Navbar from '../../components/Navigation/Navbar/Navbar';
 import MonthView from '../../components/MonthView/MonthView';
@@ -58,7 +58,6 @@ const Layout = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		meteoData: state.meteo.meteoData,
 		monthData: state.meteo.monthData,
 		todayData: state.meteo.todayData,
 		lastValue: state.meteo.lastValue,
@@ -75,6 +74,15 @@ const mapDispatchToProps = (dispatch) => {
 		sendSonoffData:(sonoffState, token) => dispatch(actionCreators.sendSonoffData(sonoffState, token)),
 		calculateMonthData:(token, event) => dispatch(actionCreators.calculateMonthData(token, event))
 	};
+};
+
+Layout.propTypes = {
+	monthData: PropTypes.array,
+	todayData: PropTypes.array,
+	lastValue: PropTypes.object,
+	sonoffState: PropTypes.bool,
+	selectedMonth: PropTypes.string,
+	token: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout); 

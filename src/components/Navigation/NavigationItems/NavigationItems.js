@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import './NavigationItems.css';
@@ -38,6 +39,13 @@ const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.token !== null
     };
+};
+
+navigationItems.propTypes = {
+	closeSideDrawer: PropTypes.func,
+	navbar2: PropTypes.bool,
+	desktopOnly: PropTypes.bool,
+	isAuthenticated: PropTypes.bool
 };
 
 export default connect(mapStateToProps, null)(navigationItems);

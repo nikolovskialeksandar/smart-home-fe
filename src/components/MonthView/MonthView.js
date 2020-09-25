@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './MonthView.css';
 import SensorChart from '../SensorChart/SensorChart';
@@ -45,6 +46,13 @@ const monthView = (props) => {
 			</form>
         </main>
     );
+};
+
+monthView.propTypes = {
+	monthData: PropTypes.array,
+	selectedMonth: PropTypes.string,
+	calculateMonthData: PropTypes.func
+
 };
 
 export default monthView;

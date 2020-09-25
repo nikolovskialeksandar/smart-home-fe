@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Input.css';
 
 const input = (props) => {
     let inputStyles = ['inputElement'];
-    let iconValid = null;
     if (!props.validation.valid && props.touched) {
         inputStyles.push('invalid');
     }
@@ -23,5 +23,15 @@ const input = (props) => {
         </div>
     );
 }
+
+input.propTypes = {
+	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
+	elementConfig: PropTypes.object,
+	value: PropTypes.string,
+	touched: PropTypes.bool,
+	validation: PropTypes.object,
+	label: PropTypes.string
+};
 
 export default input;

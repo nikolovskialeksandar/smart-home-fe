@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Layout from './containers/Layout/Layout';
 import Auth from './containers/Auth/Auth';
@@ -42,6 +42,10 @@ const mapDispatchToProps = (dispatch) => {
    return {
       authCheckState: () => dispatch(authCheckState())
    };
+};
+
+App.propTypes = {
+	isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
