@@ -8,44 +8,42 @@ import Auth from './containers/Auth/Auth';
 import { authCheckState } from './store/actions';
 
 const App = (props) => {
-   useEffect(() => {
-      props.authCheckState();
-   }, []);
+  useEffect(() => {
+    props.authCheckState();
+  }, []);
 
-   let routes = null;   
-   if (!props.isAuthenticated) {
-     routes = (
-        <Switch>
-            <Route path="/" component={Auth} />;
-        </Switch>
-     );
+  let routes = null;
+  if (!props.isAuthenticated) {
+    routes = (
+      <Switch>
+        <Route path="/" component={Auth} />;
+      </Switch>
+    );
+  } else if (props.isAuthenticated) {
+    routes = (
+      <Switch>
+        <Route path="/" component={Layout} />;
+      </Switch>
+    );
   }
 
-  else if (props.isAuthenticated) {
-      routes = (
-         <Switch>
-             <Route path="/" component={Layout} />;
-         </Switch>
-      );
-  }
-
-   return routes;
+  return routes;
 };
 
 const mapStateToProps = (state) => {
-   return {
-      isAuthenticated: state.auth.token !== null
-   };
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-   return {
-      authCheckState: () => dispatch(authCheckState())
-   };
+  return {
+    authCheckState: () => dispatch(authCheckState()),
+  };
 };
 
 App.propTypes = {
-	isAuthenticated: PropTypes.bool.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -6,17 +6,17 @@ import { Redirect } from 'react-router-dom';
 import * as actionCreators from '../../../store/actions/index';
 
 const Logout = (props) => {
-    useEffect(() => {
-        props.onLogOut();
-    }, []);
+  useEffect(() => {
+    props.onLogOut();
+  }, []);
 
-    return <Redirect to="/" />;
+  return <Redirect to="/" />;
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogOut: () => dispatch(actionCreators.authLogOut())
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogOut: () => dispatch(actionCreators.authLogOut()),
+  };
 };
 
 export default connect(null, mapDispatchToProps)(Logout);

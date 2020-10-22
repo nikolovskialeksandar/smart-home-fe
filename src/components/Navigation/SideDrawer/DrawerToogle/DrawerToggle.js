@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './DrawerToggle.css'
+import './DrawerToggle.css';
 
 const drawerToggle = (props) => (
-    <div className="drawer-toggle" onClick={props.clicked}>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+  <div
+    className="drawer-toggle"
+    role="button"
+    tabIndex={0}
+    onClick={props.clicked}
+  >
+    <div />
+    <div />
+    <div />
+  </div>
 );
 
 drawerToggle.propTypes = {
-	clicked: PropTypes.func.isRequired
+  clicked: PropTypes.func.isRequired,
 };
 
 export default drawerToggle;
