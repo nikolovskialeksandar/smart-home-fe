@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './SensorContainer.css';
-import SensorChart from '../SensorChart/SensorChart';
+import './ChartContainer.css';
+import Chart from '../Chart/Chart';
 
-const SensorContainer = (props) => {
+const ChartContainer = (props) => {
   const [sensorTypes] = useState({
     temperature: {
       dataKey: 'temperature',
@@ -20,19 +20,19 @@ const SensorContainer = (props) => {
     },
   });
   const sensorList = Object.keys(sensorTypes).map((sensor) => (
-    <SensorChart
+    <Chart
       data={props.data}
       dataKey={sensorTypes[sensor].dataKey}
       color={sensorTypes[sensor].color}
       charType={props.charType}
     />
   ));
-  return <div className="sensor-container">{sensorList}</div>;
+  return <div className="chart-container">{sensorList}</div>;
 };
 
-SensorContainer.propTypes = {
+ChartContainer.propTypes = {
   data: PropTypes.array.isRequired,
   charType: PropTypes.string.isRequired,
 };
 
-export default SensorContainer;
+export default ChartContainer;

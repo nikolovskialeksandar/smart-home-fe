@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Dashboard.css';
-import SensorContainer from '../SensorContainer/SensorContainer';
+import ChartContainer from '../ChartContainer/ChartContainer';
 import Button from '../UI/Button/Button';
 import Spinner from '../UI/Spinner/Spinner';
 import Navbar from '../Navigation/Navbar/Navbar';
@@ -35,7 +35,7 @@ const dashboard = (props) => {
           name={props.sonoffState ? 'ON' : 'OFF'}
         />
       </div>
-      <SensorContainer data={props.todayData} charType="area" />
+      <ChartContainer data={props.todayData} charType="area" />
     </main>
   );
 };

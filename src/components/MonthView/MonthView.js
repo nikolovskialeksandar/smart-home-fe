@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './MonthView.css';
-import SensorContainer from '../SensorContainer/SensorContainer';
+import ChartContainer from '../ChartContainer/ChartContainer';
 import Navbar from '../Navigation/Navbar/Navbar';
 
 const monthView = (props) => {
@@ -25,7 +25,7 @@ const monthView = (props) => {
     monthCharts = (
       <React.Fragment>
         <h2>{`${monthNames[props.selectedMonth]} values`}</h2>
-        <SensorContainer data={props.monthData} charType="line" />
+        <ChartContainer data={props.monthData} charType="line" />
       </React.Fragment>
     );
   } else if (props.selectedMonth) {
