@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import meteoReducer from './store/reducers/meteoReducer';
+import monthReducer from './store/reducers/monthReducer';
 import sonoffReducer from './store/reducers/sonoffReducer';
 import authReducer from './store/reducers/authReducer';
 import * as serviceWorker from './serviceWorker';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   meteo: meteoReducer,
   sonoff: sonoffReducer,
   auth: authReducer,
+  month: monthReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

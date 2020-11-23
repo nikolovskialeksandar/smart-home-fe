@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Navbar from '../../components/Navigation/Navbar/Navbar';
+import DayView from '../../components/DayView/DayView';
 import MonthView from '../../components/MonthView/MonthView';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Logout from '../Auth/Logout/Logout';
@@ -33,6 +34,16 @@ const Layout = (props) => {
       <Switch>
         <Route path="/logout" component={Logout} />
         <Route
+          path="/day"
+          render={() => (
+            <DayView
+              monthData={props.monthData}
+              selectedMonth={props.selectedMonth}
+              calculateMonthData={(event) => props.calculateMonthData(props.token, event)}
+            />
+          )}
+        />
+        <Route
           path="/month"
           render={() => (
             <MonthView
@@ -60,11 +71,11 @@ const Layout = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    monthData: state.meteo.monthData,
     todayData: state.meteo.todayData,
     lastValue: state.meteo.lastValue,
+    monthData: state.month.monthData,
+    selectedMonth: state.month.selectedMonth,
     sonoffState: state.sonoff.sonoffState,
-    selectedMonth: state.meteo.selectedMonth,
     token: state.auth.token,
   };
 };
