@@ -1,16 +1,9 @@
 export {
-    initMeteoData,
-    fetchMeteoDataFailed,
-    calculateMonthData,
+  initMeteoData,
+  fetchMeteoDataFailed,
+  calculateMonthData,
 } from './meteoActionCreator';
 
-export {
-    initSonoffData,
-    sendSonoffData
-} from './sonoffActionCreator';
+export { initSonoffData, sendSonoffData } from './sonoffActionCreator';
 
-export {
-    authLogOut,
-    auth,
-    authCheckState
-} from './authActionCreator';
+export { authLogOut, auth, authCheckState } from './authActionCreator';

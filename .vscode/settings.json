@@ -13,5 +13,6 @@
     "cSpell.words": [
         "sonoff",
         "switch"
-    ]
+    ],
+    "prettier.printWidth": 100
 }
