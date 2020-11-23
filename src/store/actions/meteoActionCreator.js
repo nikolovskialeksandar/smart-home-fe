@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const twoDigitsTimeFormater = (val) => {
   let twoDigits = val.toString();
-  if (val.length === 1) {
+  if (twoDigits.length === 1) {
     twoDigits = `0${val}`;
   }
 
