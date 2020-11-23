@@ -18,6 +18,7 @@ const sideDrawer = (props) => {
       <nav className={styleClasses.join(' ')}>
         <NavigationItems closeSideDrawer={props.closeSideDrawer} />
         <Button
+          type="button"
           styleClasses={['small']}
           name="X"
           onClick={props.closeSideDrawer}

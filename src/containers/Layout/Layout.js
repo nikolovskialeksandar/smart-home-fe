@@ -73,8 +73,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     initMeteoData: (token) => dispatch(actionCreators.initMeteoData(token)),
     initSonoffData: (token) => dispatch(actionCreators.initSonoffData(token)),
-    sendSonoffData: (sonoffState, token) => dispatch(actionCreators.sendSonoffData(sonoffState, token)),
-    calculateMonthData: (token, event) => dispatch(actionCreators.calculateMonthData(token, event)),
+    sendSonoffData: (sonoffState, token) =>
+      dispatch(actionCreators.sendSonoffData(sonoffState, token)),
+    calculateMonthData: (token, event) =>
+      dispatch(actionCreators.calculateMonthData(token, event)),
   };
 };
 

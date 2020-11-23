@@ -11,8 +11,11 @@ const input = (props) => {
 
   return (
     <div className="input">
-      <label className="label">{props.label}</label>
+      <label htmlFor="inputElement" className="label">
+        {props.label}
+      </label>
       <input
+        name="inputElement"
         className={inputStyles.join(' ')}
         onChange={props.onChange}
         onBlur={props.onBlur}

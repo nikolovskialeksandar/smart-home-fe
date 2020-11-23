@@ -38,7 +38,6 @@ export const authCheckState = () => {
   return (dispatch) => {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refreshToken');
     if (token) {
       dispatch(authSuccess(userId, token));
     } else {
@@ -61,7 +60,8 @@ export const auth = (email, password, isSignup) => {
       url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_API_KEY}`;
     }
 
-    axios.post(url, authData)
+    axios
+      .post(url, authData)
       .then((response) => {
         localStorage.setItem('userId', response.data.localId);
         localStorage.setItem('token', response.data.idToken);
@@ -83,7 +83,8 @@ axios.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
       const url = `https://securetoken.googleapis.com/v1/token?key=${process.env.REACT_APP_API_KEY}`;
       const data = { grant_type: 'refresh_token', refresh_token: refreshToken };
-      axios.post(url, data)
+      axios
+        .post(url, data)
         .then((response) => {
           localStorage.setItem('userId', response.data.user_id);
           localStorage.setItem('token', response.data.id_token);

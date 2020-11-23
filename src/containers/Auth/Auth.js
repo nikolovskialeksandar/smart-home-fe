@@ -85,8 +85,7 @@ const Auth = (props) => {
 
     if (controls[elementName].validationRules.minLength) {
       isValid =
-        value.length >= controls[elementName].validationRules.minLength &&
-        isValid;
+        value.length >= controls[elementName].validationRules.minLength && isValid;
       if (value.length <= controls[elementName].validationRules.minLength) {
         errorMessage = 'Password too short';
       }
@@ -177,13 +176,17 @@ const Auth = (props) => {
       />
       {submitErrorMessage}
       <Button
+        type="submit"
         styleClasses={['success']}
-        onClick={(event) => onSubmit(controls.email.value, controls.password.value, event)}
+        onClick={(event) =>
+          onSubmit(controls.email.value, controls.password.value, event)
+        }
         disabled={!controls.email.validation.valid || !controls.password.validation.valid}
         name="Submit"
       />
       <div className="auth-mode-button">
         <Button
+          type="button"
           styleClasses={['transparent']}
           onClick={(event) => switchAuthModeHandler(event)}
           name={isSignup ? 'Log in' : 'Sign up'}
@@ -214,7 +217,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (email, password, isSignup) => dispatch(actionCreators.auth(email, password, isSignup)),
+    onAuth: (email, password, isSignup) =>
+      dispatch(actionCreators.auth(email, password, isSignup)),
   };
 };
 

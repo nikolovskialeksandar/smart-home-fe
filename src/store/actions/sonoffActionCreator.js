@@ -21,9 +21,7 @@ export const setSonoffDataFailed = (error) => {
 export const initSonoffData = (token) => {
   return (dispatch) => {
     axios
-      .get(
-        `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/sonoff.json?auth=${token}`,
-      )
+      .get(`${process.env.REACT_APP_FIREBASE_PROJECT_ID}/sonoff.json?auth=${token}`)
       .then((response) => {
         dispatch(setSonoffData(response.data.sonoffSwitch));
       })
@@ -43,10 +41,9 @@ export const sendSonoffDataFailed = (error) => {
 export const sendSonoffData = (sonoffState, token) => {
   return (dispatch) => {
     axios
-      .put(
-        `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/sonoff.json?auth=${token}`,
-        { sonoffSwitch: !sonoffState },
-      )
+      .put(`${process.env.REACT_APP_FIREBASE_PROJECT_ID}/sonoff.json?auth=${token}`, {
+        sonoffSwitch: !sonoffState,
+      })
       .then(() => {
         dispatch(initSonoffData(token));
       })

@@ -51,7 +51,8 @@ export const fetchMonthDataFailed = (error) => {
 export const initMeteoData = (token) => {
   const url = `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/meteoData/${year}/${month}/${day}.json?auth=${token}`;
   return (dispatch) => {
-    axios.get(url)
+    axios
+      .get(url)
       .then((response) => {
         const todayData = Object.keys(response.data).map((key) => {
           const date = new Date(response.data[key].time);
@@ -59,8 +60,12 @@ export const initMeteoData = (token) => {
             temperature: response.data[key].temperature,
             humidity: response.data[key].humidity,
             light: response.data[key].light,
-            time: `${twoDigitsTimeFormater(date.getHours())}:${twoDigitsTimeFormater(date.getMinutes())}`,
-            date: `${twoDigitsTimeFormater(date.getDate())}.${twoDigitsTimeFormater(date.getMonth() + 1)}`,
+            time: `${twoDigitsTimeFormater(date.getHours())}:${twoDigitsTimeFormater(
+              date.getMinutes(),
+            )}`,
+            date: `${twoDigitsTimeFormater(date.getDate())}.${twoDigitsTimeFormater(
+              date.getMonth() + 1,
+            )}`,
           };
         });
 
@@ -76,10 +81,11 @@ export const initMeteoData = (token) => {
 export const calculateMonthData = (token, event) => {
   return (dispatch) => {
     const selectedMonth = event.target.value;
-    const url = `${
-      process.env.REACT_APP_FIREBASE_PROJECT_ID
-    }/meteoData/${year}/${+event.target.value + 1}.json?auth=${token}`;
-    axios.get(url)
+    const url = `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/meteoData/${year}/${
+      +event.target.value + 1
+    }.json?auth=${token}`;
+    axios
+      .get(url)
       .then((response) => {
         let monthDataArray = [];
 
@@ -106,7 +112,9 @@ export const calculateMonthData = (token, event) => {
             Object.keys(val).forEach((key) => {
               if (dataCounter === 0) {
                 const date = new Date(val[key].time);
-                time = `${twoDigitsTimeFormater(date.getDate())}.${twoDigitsTimeFormater(date.getMonth() + 1)}`;
+                time = `${twoDigitsTimeFormater(date.getDate())}.${twoDigitsTimeFormater(
+                  date.getMonth() + 1,
+                )}`;
                 minTemp = val[key].temperature;
                 maxTemp = val[key].temperature;
                 minHumid = val[key].humidity;

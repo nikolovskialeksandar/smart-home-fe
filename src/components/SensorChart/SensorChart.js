@@ -16,8 +16,7 @@ import './SensorChart.css';
 import Spinner from '../UI/Spinner/Spinner';
 
 const sensorChart = (props) => {
-  const sensorName =
-    props.dataKey.charAt(0).toUpperCase() + props.dataKey.substring(1);
+  const sensorName = props.dataKey.charAt(0).toUpperCase() + props.dataKey.substring(1);
   let sensorClass;
   switch (props.dataKey) {
     case 'temperature':
@@ -45,16 +44,13 @@ const sensorChart = (props) => {
           return (
             <div className="custom-tooltip">
               <p>
-                Avg. Temp:{' '}
-                <span className="avg">{payload[0].payload.temperature}</span>
+                Avg. Temp: <span className="avg">{payload[0].payload.temperature}</span>
               </p>
               <p>
-                Max. Temp:{' '}
-                <span className="max">{payload[0].payload.maxTemp}</span>
+                Max. Temp: <span className="max">{payload[0].payload.maxTemp}</span>
               </p>
               <p>
-                Min. Temp:{' '}
-                <span className="min">{payload[0].payload.minTemp}</span>
+                Min. Temp: <span className="min">{payload[0].payload.minTemp}</span>
               </p>
               <p>Date: {payload[0].payload.time}</p>
             </div>
@@ -63,16 +59,13 @@ const sensorChart = (props) => {
           return (
             <div className="custom-tooltip">
               <p>
-                Avg. Humidity:{' '}
-                <span className="avg">{payload[0].payload.humidity}</span>{' '}
+                Avg. Humidity: <span className="avg">{payload[0].payload.humidity}</span>{' '}
               </p>
               <p>
-                Max. Humidity:{' '}
-                <span className="max">{payload[0].payload.maxHumid}</span>{' '}
+                Max. Humidity: <span className="max">{payload[0].payload.maxHumid}</span>{' '}
               </p>
               <p>
-                Min. Humidity:{' '}
-                <span className="min">{payload[0].payload.minHumid}</span>{' '}
+                Min. Humidity: <span className="min">{payload[0].payload.minHumid}</span>{' '}
               </p>
               <p>Date: {payload[0].payload.time}</p>
             </div>
@@ -81,8 +74,7 @@ const sensorChart = (props) => {
           return (
             <div className="custom-tooltip">
               <p>
-                Avg. Light:{' '}
-                <span className="avg">{payload[0].payload.light}</span>{' '}
+                Avg. Light: <span className="avg">{payload[0].payload.light}</span>{' '}
               </p>
               <p>Date: {payload[0].payload.time}</p>
             </div>
