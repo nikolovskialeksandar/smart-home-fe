@@ -12,10 +12,10 @@ import {
   Tooltip,
 } from 'recharts';
 
-import './SensorChart.css';
+import './Chart.css';
 import Spinner from '../UI/Spinner/Spinner';
 
-const sensorChart = (props) => {
+const chart = (props) => {
   const sensorName = props.dataKey.charAt(0).toUpperCase() + props.dataKey.substring(1);
   let sensorClass;
   switch (props.dataKey) {
@@ -88,9 +88,9 @@ const sensorChart = (props) => {
   };
 
   const chartType = props.charType;
-  let chart = <Spinner />;
+  let chartContent = <Spinner />;
   if (chartType === 'area') {
-    chart = (
+    chartContent = (
       <ResponsiveContainer>
         <AreaChart data={props.data}>
           <CartesianGrid strokeDasharray="1 4" />
@@ -107,7 +107,7 @@ const sensorChart = (props) => {
       </ResponsiveContainer>
     );
   } else if (chartType === 'line') {
-    chart = (
+    chartContent = (
       <ResponsiveContainer>
         <LineChart data={props.data}>
           <CartesianGrid strokeDasharray="1 4" />
@@ -121,20 +121,20 @@ const sensorChart = (props) => {
   }
 
   return (
-    <div className="sensor-output">
+    <div className="chart">
       <h3>
         {sensorName} <i className={sensorClass} />
       </h3>
-      {chart}
+      {chartContent}
     </div>
   );
 };
 
-sensorChart.propTypes = {
+chart.propTypes = {
   data: PropTypes.array,
   dataKey: PropTypes.string.isRequired,
   color: PropTypes.string,
   charType: PropTypes.string.isRequired,
 };
 
-export default sensorChart;
+export default chart;

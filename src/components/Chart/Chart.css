@@ -1,4 +1,4 @@
-.sensor-output {
+.chart {
 	width: 45%;
     height: 370px;
     margin-top: 30px;
@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.sensor-output h3 {
+.chart h3 {
 	margin-bottom: 15px;
 }
 
@@ -29,14 +29,14 @@
 }
 
 @media(max-width: 1050px) {
-    .sensor-output {
+    .chart {
         width: 80%;
         height: 290px;
     }
 }
 
 @media(max-width: 600px) {
-    .sensor-output {
+    .chart {
         width: 100%;
         height: 230px;
         margin-left: -30px;

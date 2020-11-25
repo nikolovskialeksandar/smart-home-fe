@@ -1,25 +1,23 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  todayData: null,
-  monthData: null,
-  selectedMonth: null,
-  lastValue: null,
-  error: false,
+  dayData: null,
+  selectedDay: null,
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_METEO_DATA:
+    case actionTypes.SET_DAY_DATA:
       return {
         ...state,
-        todayData: action.todayData,
-        lastValue: action.lastValue,
-        error: false,
+        dayData: action.dayData,
+        selectedDay: action.selectedDay,
       };
-    case actionTypes.FETCH_METEO_DATA_FAILED:
+    case actionTypes.FETCH_DAY_DATA_FAILED:
       return {
         ...state,
+        dayData: null,
         error: true,
       };
     default:

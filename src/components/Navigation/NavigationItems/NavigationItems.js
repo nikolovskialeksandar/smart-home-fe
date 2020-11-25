@@ -15,6 +15,9 @@ const navigationItems = (props) => {
         <NavigationItem link="/" navbar2>
           Today
         </NavigationItem>
+        <NavigationItem link="/day" navbar2>
+          Day
+        </NavigationItem>
         <NavigationItem link="/month" navbar2>
           Month
         </NavigationItem>

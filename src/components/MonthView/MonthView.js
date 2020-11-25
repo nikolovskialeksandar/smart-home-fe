@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './MonthView.css';
-import SensorChart from '../SensorChart/SensorChart';
+import ChartContainer from '../ChartContainer/ChartContainer';
 import Navbar from '../Navigation/Navbar/Navbar';
 
 const monthView = (props) => {
@@ -25,29 +25,10 @@ const monthView = (props) => {
     monthCharts = (
       <React.Fragment>
         <h2>{`${monthNames[props.selectedMonth]} values`}</h2>
-        <div className="sensor-container">
-          <SensorChart
-            data={props.monthData}
-            dataKey="temperature"
-            color="#F44336"
-            charType="line"
-          />
-          <SensorChart
-            data={props.monthData}
-            dataKey="humidity"
-            color="#4FC3F7"
-            charType="line"
-          />
-          <SensorChart
-            data={props.monthData}
-            dataKey="light"
-            color="#FFD54F"
-            charType="line"
-          />
-        </div>
+        <ChartContainer data={props.monthData} charType="line" />
       </React.Fragment>
     );
-  } else if (props.selectedMonth) {
+  } else if (props.selectedMonth && props.monthData === null) {
     monthCharts = <p className="no-data">No data</p>;
   }
 
