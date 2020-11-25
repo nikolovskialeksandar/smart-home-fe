@@ -37,9 +37,9 @@ const Layout = (props) => {
           path="/day"
           render={() => (
             <DayView
-              monthData={props.monthData}
-              selectedMonth={props.selectedMonth}
-              calculateMonthData={(event) => props.calculateMonthData(props.token, event)}
+              dayData={props.dayData}
+              selectedDay={props.selectedDay}
+              fetchDayData={(date) => props.fetchDayData(props.token, date)}
             />
           )}
         />
@@ -75,6 +75,8 @@ const mapStateToProps = (state) => {
     lastValue: state.meteo.lastValue,
     monthData: state.month.monthData,
     selectedMonth: state.month.selectedMonth,
+    dayData: state.day.dayData,
+    selectedDay: state.day.selectedDay,
     sonoffState: state.sonoff.sonoffState,
     token: state.auth.token,
   };
@@ -88,15 +90,17 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.sendSonoffData(sonoffState, token)),
     calculateMonthData: (token, event) =>
       dispatch(actionCreators.calculateMonthData(token, event)),
+    fetchDayData: (token, date) => dispatch(actionCreators.fetchDayData(token, date)),
   };
 };
 
 Layout.propTypes = {
-  monthData: PropTypes.array,
   todayData: PropTypes.array,
   lastValue: PropTypes.object,
   sonoffState: PropTypes.bool,
+  monthData: PropTypes.array,
   selectedMonth: PropTypes.string,
+  dayData: PropTypes.array,
   token: PropTypes.string,
 };
 

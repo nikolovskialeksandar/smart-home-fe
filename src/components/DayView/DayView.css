@@ -1,0 +1,81 @@
+.day-view h2 {
+  margin: 40px 0 10px 65px;
+  font-size: 20px;
+}
+
+.day-view input {
+  width: 250px;
+  margin: 30px 0 0 65px;
+  padding: 11px 11px 11px 13px;
+  border: none;
+  background-color: #424242;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.no-data {
+  margin: 40px 20px 0 95px;
+  text-align: left;
+}
+
+/* Flatpickr theme color override */
+
+.flatpickr-calendar,
+.flatpickr-months .flatpickr-month,
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month,
+span.flatpickr-weekday {
+  background-color: #424242;
+}
+
+.flatpickr-day.inRange,
+.flatpickr-day.prevMonthDay.inRange,
+.flatpickr-day.nextMonthDay.inRange,
+.flatpickr-day.today.inRange,
+.flatpickr-day.prevMonthDay.today.inRange,
+.flatpickr-day.nextMonthDay.today.inRange,
+.flatpickr-day:hover,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day:focus,
+.flatpickr-day.prevMonthDay:focus,
+.flatpickr-day.nextMonthDay:focus {
+  background:  #686868;
+  border-color: #686868;
+}
+
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.startRange.prevMonthDay,
+.flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.endRange.nextMonthDay {
+  background: #fff;
+  color: rgb(43, 43, 43);
+  border-color: #fff;
+}
+
+.flatpickr-calendar.arrowBottom:after {
+  border-top-color: #424242;
+}
+
+.flatpickr-calendar.arrowTop:after {
+  border-bottom-color: #424242;
+}
+
+.flatpickr-day.selected {
+  background-color: #266188;
+  border-color: #266188;
+}

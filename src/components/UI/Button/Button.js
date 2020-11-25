@@ -5,6 +5,7 @@ import './Button.css';
 
 const button = (props) => {
   const { styleClasses } = props;
+  styleClasses.unshift('button-element');
   if (props.disabled) {
     styleClasses.push(' disabled');
   }
@@ -13,7 +14,7 @@ const button = (props) => {
     <button
       // eslint-disable-next-line react/button-has-type
       type={props.type}
-      className={styleClasses}
+      className={styleClasses.join(' ')}
       onClick={props.onClick}
       disabled={props.disabled}
     >

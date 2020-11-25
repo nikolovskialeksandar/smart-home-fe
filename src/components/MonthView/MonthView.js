@@ -28,7 +28,7 @@ const monthView = (props) => {
         <ChartContainer data={props.monthData} charType="line" />
       </React.Fragment>
     );
-  } else if (props.selectedMonth) {
+  } else if (props.selectedMonth && props.monthData === null) {
     monthCharts = <p className="no-data">No data</p>;
   }
 

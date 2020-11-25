@@ -23,4 +23,6 @@ select {
     color:white;
     outline: none;
     cursor: pointer;
+    box-sizing: border-box;
+
 }

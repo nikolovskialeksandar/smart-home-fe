@@ -14,6 +14,7 @@ const twoDigitsTimeFormater = (val) => {
 };
 
 const year = new Date().getFullYear();
+
 export const setMonthData = (monthData, selectedMonth) => {
   return {
     type: actionTypes.SET_MONTH_DATA,
