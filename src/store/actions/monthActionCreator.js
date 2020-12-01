@@ -13,8 +13,6 @@ const twoDigitsTimeFormater = (val) => {
   return twoDigits;
 };
 
-const year = new Date().getFullYear();
-
 export const setMonthData = (monthData, selectedMonth) => {
   return {
     type: actionTypes.SET_MONTH_DATA,
@@ -30,11 +28,11 @@ export const fetchMonthDataFailed = (error) => {
   };
 };
 
-export const calculateMonthData = (token, event) => {
+export const calculateMonthData = (token, month, year) => {
   return (dispatch) => {
-    const selectedMonth = event.target.value;
+    const selectedMonth = month;
     const url = `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/meteoData/${year}/${
-      +event.target.value + 1
+      +selectedMonth + 1
     }.json?auth=${token}`;
     axios
       .get(url)

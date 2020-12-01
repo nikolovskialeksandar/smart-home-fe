@@ -50,7 +50,9 @@ const Layout = (props) => {
             <MonthView
               monthData={props.monthData}
               selectedMonth={props.selectedMonth}
-              calculateMonthData={(event) => props.calculateMonthData(props.token, event)}
+              calculateMonthData={(month, year) =>
+                props.calculateMonthData(props.token, month, year)
+              }
             />
           )}
         />
@@ -101,8 +103,8 @@ const mapDispatchToProps = (dispatch) => {
     initSonoffData: (token) => dispatch(actionCreators.initSonoffData(token)),
     sendSonoffData: (sonoffState, token) =>
       dispatch(actionCreators.sendSonoffData(sonoffState, token)),
-    calculateMonthData: (token, event) =>
-      dispatch(actionCreators.calculateMonthData(token, event)),
+    calculateMonthData: (token, month, year) =>
+      dispatch(actionCreators.calculateMonthData(token, month, year)),
     calculateYearData: (token, year) =>
       dispatch(actionCreators.calculateYearData(token, year)),
     fetchDayData: (token, date) => dispatch(actionCreators.fetchDayData(token, date)),

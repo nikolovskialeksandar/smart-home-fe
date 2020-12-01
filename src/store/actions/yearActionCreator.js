@@ -100,7 +100,6 @@ export const calculateYearData = (token, event) => {
                 minHumid: +minHumid.toFixed(1),
                 maxHumid: +maxHumid.toFixed(1),
                 month: month,
-                dataCounter: dataCounter,
               });
               averageTemp = averageHumid = averageLight = maxTemp = minTemp = maxHumid = minHumid = dataCounter = 0;
             });
