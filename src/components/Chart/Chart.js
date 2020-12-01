@@ -111,7 +111,7 @@ const chart = (props) => {
       <ResponsiveContainer>
         <LineChart data={props.data}>
           <CartesianGrid strokeDasharray="1 4" />
-          <XAxis dataKey="time" />
+          <XAxis dataKey={props.data[0].month ? 'month' : 'time'} />
           <YAxis />
           <Line type="monotone" dataKey={props.dataKey} stroke={props.color} />
           <Tooltip content={<CustomTooltip />} />

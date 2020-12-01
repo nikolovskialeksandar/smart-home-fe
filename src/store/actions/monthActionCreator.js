@@ -13,8 +13,6 @@ const twoDigitsTimeFormater = (val) => {
   return twoDigits;
 };
 
-const year = new Date().getFullYear();
-
 export const setMonthData = (monthData, selectedMonth) => {
   return {
     type: actionTypes.SET_MONTH_DATA,
@@ -30,11 +28,11 @@ export const fetchMonthDataFailed = (error) => {
   };
 };
 
-export const calculateMonthData = (token, event) => {
+export const calculateMonthData = (token, month, year) => {
   return (dispatch) => {
-    const selectedMonth = event.target.value;
+    const selectedMonth = month;
     const url = `${process.env.REACT_APP_FIREBASE_PROJECT_ID}/meteoData/${year}/${
-      +event.target.value + 1
+      +selectedMonth + 1
     }.json?auth=${token}`;
     axios
       .get(url)
@@ -83,19 +81,19 @@ export const calculateMonthData = (token, event) => {
 
               averageTemp += val[key].temperature;
               averageHumid += val[key].humidity;
-              averageLight += val[key].light;
+              averageLight += val[key].light ? val[key].light : 0;
               dataCounter++;
             });
 
             monthDataArray.push({
-              temperature: (averageTemp / dataCounter).toFixed(1),
-              humidity: (averageHumid / dataCounter).toFixed(1),
-              light: (averageLight / dataCounter).toFixed(1),
+              temperature: +(averageTemp / dataCounter).toFixed(1),
+              humidity: +(averageHumid / dataCounter).toFixed(1),
+              light: +(averageLight / dataCounter).toFixed(1),
               time,
-              maxTemp: maxTemp.toFixed(1),
-              minTemp: minTemp.toFixed(1),
-              minHumid: minHumid.toFixed(1),
-              maxHumid: maxHumid.toFixed(1),
+              maxTemp: +maxTemp.toFixed(1),
+              minTemp: +minTemp.toFixed(1),
+              minHumid: +minHumid.toFixed(1),
+              maxHumid: +maxHumid.toFixed(1),
             });
 
             averageTemp = averageHumid = averageLight = maxTemp = minTemp = maxHumid = minHumid = dataCounter = 0;

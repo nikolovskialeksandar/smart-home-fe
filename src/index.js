@@ -11,6 +11,7 @@ import App from './App';
 import meteoReducer from './store/reducers/meteoReducer';
 import monthReducer from './store/reducers/monthReducer';
 import dayReducer from './store/reducers/dayReducer';
+import yearReducer from './store/reducers/yearReducer';
 import sonoffReducer from './store/reducers/sonoffReducer';
 import authReducer from './store/reducers/authReducer';
 import * as serviceWorker from './serviceWorker';
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   month: monthReducer,
   day: dayReducer,
+  year: yearReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

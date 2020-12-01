@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './MonthView.css';
 import ChartContainer from '../ChartContainer/ChartContainer';
 import Navbar from '../Navigation/Navbar/Navbar';
 
-const monthView = (props) => {
-  const monthNames = [
+const MonthView = (props) => {
+  const [selectedYear, setSelectedYear] = useState();
+  const yearList = ['2025', '2024', '2023', '2022', '2021', '2020'];
+  const monthList = [
     'January',
     'February',
     'March',
@@ -24,7 +26,7 @@ const monthView = (props) => {
   if (props.monthData !== [] && props.monthData !== null) {
     monthCharts = (
       <React.Fragment>
-        <h2>{`${monthNames[props.selectedMonth]} values`}</h2>
+        <h2>{`${monthList[props.selectedMonth]} values`}</h2>
         <ChartContainer data={props.monthData} charType="line" />
       </React.Fragment>
     );
@@ -36,24 +38,38 @@ const monthView = (props) => {
     <main className="month-view">
       <Navbar navbar2 />
       <form>
-        <select defaultValue="default" onChange={props.calculateMonthData}>
+        <select
+          defaultValue="default"
+          onChange={(event) => setSelectedYear(event.target.value)}
+        >
+          <option value="default" disabled hidden>
+            Select year
+          </option>
+          {yearList.map((year) => (
+            <option value={year}>{year}</option>
+          ))}
+        </select>
+        <select
+          defaultValue="default"
+          onChange={(event) => props.calculateMonthData(event.target.value, selectedYear)}
+        >
           <option value="default" disabled hidden>
             Select month
           </option>
-          {monthNames.map((month, index) => (
+          {monthList.map((month, index) => (
             <option value={index}>{month}</option>
           ))}
         </select>
-        {monthCharts}
       </form>
+      {monthCharts}
     </main>
   );
 };
 
-monthView.propTypes = {
+MonthView.propTypes = {
   monthData: PropTypes.array,
   selectedMonth: PropTypes.string,
   calculateMonthData: PropTypes.func,
 };
 
-export default monthView;
+export default MonthView;
