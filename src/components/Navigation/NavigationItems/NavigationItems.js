@@ -21,6 +21,9 @@ const navigationItems = (props) => {
         <NavigationItem link="/month" navbar2>
           Month
         </NavigationItem>
+        <NavigationItem link="/year" navbar2>
+          Year
+        </NavigationItem>
       </div>
     );
   } else {

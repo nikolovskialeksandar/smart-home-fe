@@ -83,19 +83,19 @@ export const calculateMonthData = (token, event) => {
 
               averageTemp += val[key].temperature;
               averageHumid += val[key].humidity;
-              averageLight += val[key].light;
+              averageLight += val[key].light ? val[key].light : 0;
               dataCounter++;
             });
 
             monthDataArray.push({
-              temperature: (averageTemp / dataCounter).toFixed(1),
-              humidity: (averageHumid / dataCounter).toFixed(1),
-              light: (averageLight / dataCounter).toFixed(1),
+              temperature: +(averageTemp / dataCounter).toFixed(1),
+              humidity: +(averageHumid / dataCounter).toFixed(1),
+              light: +(averageLight / dataCounter).toFixed(1),
               time,
-              maxTemp: maxTemp.toFixed(1),
-              minTemp: minTemp.toFixed(1),
-              minHumid: minHumid.toFixed(1),
-              maxHumid: maxHumid.toFixed(1),
+              maxTemp: +maxTemp.toFixed(1),
+              minTemp: +minTemp.toFixed(1),
+              minHumid: +minHumid.toFixed(1),
+              maxHumid: +maxHumid.toFixed(1),
             });
 
             averageTemp = averageHumid = averageLight = maxTemp = minTemp = maxHumid = minHumid = dataCounter = 0;

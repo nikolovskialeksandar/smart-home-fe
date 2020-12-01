@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Navbar from '../../components/Navigation/Navbar/Navbar';
 import DayView from '../../components/DayView/DayView';
 import MonthView from '../../components/MonthView/MonthView';
+import YearView from '../../components/YearView/YearView';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Logout from '../Auth/Logout/Logout';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
@@ -54,6 +55,16 @@ const Layout = (props) => {
           )}
         />
         <Route
+          path="/year"
+          render={() => (
+            <YearView
+              yearData={props.yearData}
+              selectedYear={props.selectedYear}
+              calculateYearData={(event) => props.calculateYearData(props.token, event)}
+            />
+          )}
+        />
+        <Route
           path="/"
           render={() => (
             <Dashboard
@@ -75,6 +86,8 @@ const mapStateToProps = (state) => {
     lastValue: state.meteo.lastValue,
     monthData: state.month.monthData,
     selectedMonth: state.month.selectedMonth,
+    yearData: state.year.yearData,
+    selectedYear: state.year.selectedYear,
     dayData: state.day.dayData,
     selectedDay: state.day.selectedDay,
     sonoffState: state.sonoff.sonoffState,
@@ -90,6 +103,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.sendSonoffData(sonoffState, token)),
     calculateMonthData: (token, event) =>
       dispatch(actionCreators.calculateMonthData(token, event)),
+    calculateYearData: (token, year) =>
+      dispatch(actionCreators.calculateYearData(token, year)),
     fetchDayData: (token, date) => dispatch(actionCreators.fetchDayData(token, date)),
   };
 };
@@ -100,6 +115,8 @@ Layout.propTypes = {
   sonoffState: PropTypes.bool,
   monthData: PropTypes.array,
   selectedMonth: PropTypes.string,
+  yearData: PropTypes.array,
+  selectedYear: PropTypes.string,
   dayData: PropTypes.array,
   token: PropTypes.string,
 };

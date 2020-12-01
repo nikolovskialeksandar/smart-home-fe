@@ -31,23 +31,23 @@ const DayView = (props) => {
     );
 
     dayCharts = (
-      <div>
+      <React.Fragment>
         {dateDisplay}
         <ChartContainer data={props.dayData} charType="area" />
-      </div>
+      </React.Fragment>
     );
   } else if (props.selectedDay && props.dayData === null) {
     dayCharts = <p className="no-data"> No data</p>;
   }
   return (
-    <div className="day-view">
+    <main className="day-view">
       <Navbar navbar2 />
       <Flatpickr
         onChange={(event) => props.fetchDayData(event[0])}
         defaultValue="Select date"
       />
       {dayCharts}
-    </div>
+    </main>
   );
 };
 

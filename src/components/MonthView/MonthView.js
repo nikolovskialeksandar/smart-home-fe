@@ -44,8 +44,8 @@ const monthView = (props) => {
             <option value={index}>{month}</option>
           ))}
         </select>
-        {monthCharts}
       </form>
+      {monthCharts}
     </main>
   );
 };
