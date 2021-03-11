@@ -138,9 +138,12 @@ const Auth = (props) => {
   }
 
   const submitErrorMessages = {
-    EMAIL_NOT_FOUND: 'Incorrect email address',
+    INVALID_EMAIL: 'Incorrect email address',
+    EMAIL_NOT_FOUND: 'Email address does not exist',
     INVALID_PASSWORD: 'Incorrect password',
-    EMAIL_EXISTS: 'An account with this email already exists',
+    MISSING_PASSWORD: 'Enter password',
+    WEAK_PASSWORD: 'Weak password',
+    EMAIL_EXISTS: 'Account with this email already exists',
   };
 
   let submitErrorMessage = null;
@@ -181,7 +184,6 @@ const Auth = (props) => {
         onClick={(event) =>
           onSubmit(controls.email.value, controls.password.value, event)
         }
-        disabled={!controls.email.validation.valid || !controls.password.validation.valid}
         name="Submit"
       />
       <div className="auth-mode-button">

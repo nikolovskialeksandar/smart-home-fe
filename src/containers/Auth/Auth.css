@@ -26,3 +26,15 @@
 .auth-mode-button {
     margin: 40px;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #121212 inset;
+    box-shadow: 0 0 0 30px #121212 inset;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #d9d9d9;
+}
